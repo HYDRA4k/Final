@@ -1,4 +1,5 @@
 using System;
+using System.Data;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -15,8 +16,15 @@ namespace M05_UF3_P2_Template.Pages.Products
         public int Game_Id { get; set; }
         [BindProperty]
         public Product product { get; set; }
+
+        public List<Company> companies = new List<Company>();
         public void OnGet()
         {
+            DataTable dt = DatabaseManager.Select("Company", new string[] { "*" }, "");
+            foreach (DataRow dataRow in dt.Rows)
+            {
+                companies.Add(new Company(dataRow));
+            }
             if (Id > 0)
             {
                 product = new Product(Id);
@@ -37,6 +45,16 @@ namespace M05_UF3_P2_Template.Pages.Products
             {
                 product.Add();
                 Id = (int)DatabaseManager.Scalar("Product", DatabaseManager.SCALAR_TYPE.MAX, new string[] { "Id" }, "");
+                if (product.Type == Product.TYPE.GAME)
+                {
+                    Game game = new Game();
+                    game.Product_Id = Id;
+                    game.Add();
+                }
+                else
+                {
+
+                }
                 OnGet();
             }
         }
