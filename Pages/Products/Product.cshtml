@@ -6,12 +6,39 @@
 
 <form method="post">
     <button type="submit" class="btn btn-primary float-right"><span class="material-icons">save</span></button>
-    <input type="text" asp-for="product.Summary" />
-    <input type="number" step="any" asp-for="product.Price" />
-    <input type="number" asp-for="product.Developer_id" />
-    <input type="number" asp-for="product.Editor_id" />
-
     <a class="btn btn-primary float-right" asp-page="/Products/Game" asp-route-id="@Model.Game_Id" title="Edit game">
         <span class="material-icons text-white">edit</span>
     </a>
+    <div class="card-body">
+        <div class="form-row">
+            <div class="form-group col-md-2">
+                <label for="SumaryInput col-sm-2 col-form-label">Summary</label>
+                <input type="text" class="form-control" asp-for="product.Summary" id="SumaryInput" />
+            </div>
+            <div class="form-group col-md-2">
+                <label for="PriceInput col-sm-2 col-form-label">Price</label>
+                <input type="number" class="form-control" step="any" asp-for="product.Price" id="PriceInput" />
+            </div>
+            @*<div class="dropdown">
+                <button class="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                    Dropdown button
+                </button>
+                @for
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                    <li><a class="dropdown-item" asp-for="product.Developer_id">Action</a></li>
+                    <li><a class="dropdown-item" href="#">Another action</a></li>
+                    <li><a class="dropdown-item" href="#">Something else here</a></li>
+                </ul>
+            </div>*@
+            <div class="form-group col-md-2">
+                <label for="DeveloperIdInput col-sm-2 col-form-label">Developer ID</label>
+                <input type="number" class="form-control" asp-for="product.Developer_id" id="DeveloperIdInput" />
+            </div>
+            <div class="form-group col-md-2">
+                <label for="EditorIdInput col-sm-2 col-form-label">Editor ID</label>
+                <input type="number" class="form-control" asp-for="product.Editor_id" id="EditorIdInput" />
+            </div>
+        </div>
+    </div>
+
 </form>
