@@ -16,10 +16,15 @@ p {
     color: #fff;
 }
 
+body {
+    background-color: rgba(128, 128, 128, 0.3);
+}
+
 .img-central {
     justify-content: center;
     text-align: center;
     margin-top: 10%;
+    margin: 20%;
 }
 
 .img-central img {
