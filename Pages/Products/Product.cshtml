@@ -2,8 +2,13 @@
 @model M05_UF3_P2_Template.Pages.Products.ProductModel
 @using M05_UF3_P2_Template.App_Code.Model
 @{
+    ViewData["Title"] = "Cretae Product";
 }
-
+<style>
+    .disabel{
+        display: none;
+    }
+</style>
 <form name="MyForm" method="post">
     <button type="submit" class="btn btn-primary float-right"><span class="material-icons">save</span></button>
     <a class="btn btn-primary float-right" asp-page="/Products/Game" asp-route-id="@Model.Game_Id" title="Edit game">
@@ -12,36 +17,46 @@
     <div class="card-body">
         <div class="form-row">
             <div class="form-group col-md-2">
-                <label for="SumaryInput col-sm-2 col-form-label">Summary</label>
+                <label for="SumaryInput col-sm-2 col-form-label">Name</label>
                 <input type="text" class="form-control" asp-for="product.Summary" id="SumaryInput" />
             </div>
             <div class="form-group col-md-2">
                 <label for="PriceInput col-sm-2 col-form-label">Price</label>
                 <input type="number" class="form-control" step="any" asp-for="product.Price" id="PriceInput" />
             </div>
-            <div class="dropdown">
-                <select id="Selct" onchange="numberSelect()">
+            <div class="form-group col-md-2">
+                 <label for="DeveloperIdInput col-sm-2 col-form-label">Compani ID</label>
+                <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" id="Selct" onchange="numberSelect()">
+                    <option selected>None</option>
                     @foreach (Company company in Model.companies)
                     {
-                        <option id="idcom" value="@company.Id">@company.Name</option>
-
+                        <option value="@company.Id">@company.Name</option>
                     }
                 </select>
-                <input type="number" class="form-control" asp-for="product.Developer_id" id="DeveloperIdInput" />
+                <input type="number" class="form-control disabel" asp-for="product.Developer_id" id="DeveloperIdInput" />
             </div>
-            @* <div class="form-group col-md-2">
-                <label for="DeveloperIdInput col-sm-2 col-form-label">Developer ID</label>
-                </div>*@
             <div class="form-group col-md-2">
                 <label for="EditorIdInput col-sm-2 col-form-label">Editor ID</label>
-                <input type="number" class="form-control" asp-for="product.Editor_id" id="EditorIdInput" />
+                <select class="form-select form-select-lg mb-3" aria-label=".form-select-lg example" id="Selct2" onchange="numberSelect2()">
+                    <option selected>None</option>
+                    @foreach (Company company in Model.companies)
+                    {
+                        <option value="@company.Id">@company.Name</option>
+                    }
+                </select>
+                <input type="number" class="form-control disabel" asp-for="product.Editor_id" id="EditorIdInput" />
             </div>
         </div>
         <script>
             let selector = document.getElementById("Selct")
+            let selector2 = document.getElementById("Selct2")
             let company = document.getElementById("DeveloperIdInput")
+            let editor = document.getElementById("EditorIdInput")
             function numberSelect(){
-                company.value = selector.options[selector.selectedIndex].value 
+                company.value = selector.options[selector.selectedIndex].value
+            }
+            function numberSelect2(){
+                editor.value = selector2.options[selector2.selectedIndex].value
             }
         </script>
     </div>
